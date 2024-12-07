@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Duy Hoàng!</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .star {
+            position: fixed;
+            content: "";
+            width: 4px;
+            height: 4px;
+            background: gold;
+            border-radius: 50%;
+            animation: starFall 3s linear infinite;
+            pointer-events: none;
+            box-shadow: 
+                0 0 2px gold,
+                0 0 4px gold,
+                0 0 6px gold,
+                0 0 8px gold;
+            z-index: 9999999;
+            opacity: 1;
+        }
+
+        .bubble {
+            position: fixed;
+            bottom: -20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: bubbleRise linear;
+        }
+
+        @keyframes starFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleRise {
+            from {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            to {
+                transform: translateY(-100vh) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">✨ Happy Birthday ✨</h1>
+            <h2 class="name">🎉 Duy Hoàng 🎉</h2>
+            <h3>🎂 7/12/2024 🎂</h3>
+
+        <div class="birthday-card">
+            <div class="wishes">
+                <p>🌟 Chúc mừng sinh nhật! Chúc bạn một ngày thật vui vẻ và hạnh phúc. 🌟</p>
+                <p>🎂 Tuổi mới thêm nhiều niềm vui, sức khỏe và may mắn! 🎂</p>
+            </div>
+            <div class="message">
+                <p>💫 Bớt tẻn tẻn lại nhé 💫</p>
+                <p>🎁 Đừng off vì mẹ gank nhé:> 🎁</p>
+                <p>🌺 Chơi game thông minh hơn xíu đii🌺</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>designed by: Duy</p>
+        </footer>
+        <div class="photo-gallery">
+            <div class="photo-box">
+                <img src="img/1.png" alt="Hình ảnh 1" class="photo">
+            </div>
+            <div class="photo-box">
+                <img src="img/2.png" alt="Hình ảnh 2" class="photo">
+            </div>
+            <div class="photo-box">
+                <img src="img/3.png" alt="Hình ảnh 3" class="photo">
+            </div>
+            <div class="photo-box">
+                <img src="img/4.png" alt="Hình ảnh 4" class="photo">
+            </div>
+            <div class="photo-box">
+                <img src="img/1.png" alt="Hình ảnh 5" class="photo">
+            </div>
+            <div class="photo-box">
+                <img src="img/2.png" alt="Hình ảnh 6" class="photo">
+            </div>
+            <div class="photo-box">
+                <img src="img/3.png" alt="Hình ảnh 7" class="photo">
+            </div>
+            <div class="photo-box">
+                <img src="img/4.png" alt="Hình ảnh 8" class="photo">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tạo chữ Happy Birthday bay lên
+        function createFlyingText() {
+            const text = document.createElement('div');
+            text.className = 'flying-text';
+            text.innerText = 'Happy Birthday!';
+            text.style.left = Math.random() * window.innerWidth + 'px';
+            text.style.bottom = '-50px'; // Bắt đầu từ dưới màn hình
+            text.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`; // Màu ngẫu nhiên
+            text.style.fontSize = Math.random() * 20 + 15 + 'px'; // Kích thước chữ ngẫu nhiên
+            text.style.position = 'fixed';
+            text.style.animation = 'flyUp 4s linear';
+            document.body.appendChild(text);
+
+            text.addEventListener('animationend', () => {
+                text.remove();
+            });
+        }
+
+        // Thêm keyframes animation vào head
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes flyUp {
+                from {
+                    transform: translateY(0) rotate(${Math.random() * 20 - 10}deg);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateY(-100vh) rotate(${Math.random() * 20 - 10}deg);
+                    opacity: 0;
+                }
+            }
+            .flying-text {
+                pointer-events: none;
+                z-index: 1000;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Tạo chữ bay lên mỗi 500ms và dừng sau 5s
+        window.addEventListener('load', () => {
+            const flyingInterval = setInterval(createFlyingText, 500);
+            
+            setTimeout(() => {
+                clearInterval(flyingInterval); // Dừng tạo chữ mới
+                // Xóa tất cả chữ đang bay từ từ
+                const flyingTexts = document.querySelectorAll('.flying-text');
+                flyingTexts.forEach(text => {
+                    text.style.transition = 'opacity 1s';
+                    text.style.opacity = '0';
+                    setTimeout(() => text.remove(), 1000);
+                });
+            }, 10000);
+        });
+        // Tạo sao rơi
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.animationDuration = Math.random() * 2 + 1 + 's';
+            document.body.appendChild(star);
+
+            // Thêm hiệu ứng lấp lánh ngẫu nhiên
+            const twinkle = () => {
+                star.style.opacity = Math.random();
+                setTimeout(twinkle, Math.random() * 500);
+            };
+            twinkle();
+
+            star.addEventListener('animationend', () => {
+                star.remove();
+            });
+        }
+
+        // Tạo bong bóng
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.left = Math.random() * window.innerWidth + 'px';
+            bubble.style.width = bubble.style.height = Math.random() * 20 + 10 + 'px';
+            bubble.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(bubble);
+
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+            });
+        }
+
+        // Bắt đầu tạo hiệu ứng khi trang load xong
+        window.addEventListener('load', () => {
+            // Tạo bong bóng trước
+            const bubbleInterval = setInterval(createBubble, 200);
+            
+            // Sau 5 giây, dừng tạo bong bóng và bắt đầu tạo sao rơi
+            setTimeout(() => {
+                clearInterval(bubbleInterval);
+                setInterval(createStar, 300); // Tăng tần suất tạo sao
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

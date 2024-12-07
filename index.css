@@ -1,0 +1,220 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes paperWave {
+    0% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+    100% { transform: rotate(-1deg); }
+}
+
+@keyframes slideImages {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2, #81d4fa);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 1000px;
+    padding: 40px;
+    margin: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    animation: paperWave 8s ease-in-out infinite;
+    background-image: linear-gradient(#fff 2px, transparent 2px),
+                      linear-gradient(90deg, #fff 2px, transparent 2px),
+                      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    background: #fff;
+    z-index: -1;
+    transform: rotate(2deg);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 4em;
+    color: #0288d1;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #0288d1, #03a9f4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.name {
+    font-size: 3em;
+    color: #03a9f4;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(3, 169, 244, 0.3);
+}
+
+.birthday-card {
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.wishes {
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.photo-gallery {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    margin-top: auto;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.photo-box {
+    width: 250px;
+    height: 320px;
+    transition: all 0.5s ease;
+    position: relative;
+    flex-shrink: 0;
+    animation: slideImages 20s linear infinite;
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(3, 169, 244, 0.6));
+    transition: all 0.5s ease;
+}
+
+.photo-box:hover {
+    transform: translateY(-15px);
+}
+
+.photo-box:hover .photo {
+    filter: drop-shadow(0 15px 25px rgba(3, 169, 244, 0.8));
+}
+
+.message {
+    text-align: center;
+    font-size: 1.4em;
+    color: #444;
+    margin: 30px 0;
+    padding: 25px;
+    background: rgba(3, 169, 244, 0.08);
+    border-radius: 15px;
+    border: 2px dashed rgba(3, 169, 244, 0.3);
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #0288d1;
+    font-size: 1.3em;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+/* Decorative elements */
+
+.birthday-card::after {
+    content: '🎁';
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    font-size: 2.5em;
+    animation: float 4s ease-in-out infinite reverse;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .photo-box {
+        width: 220px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .photo-box {
+        width: 180px;
+        height: 240px;
+    }
+    
+    .title {
+        font-size: 3em;
+    }
+    
+    .name {
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-box {
+        width: 140px;
+        height: 200px;
+    }
+    
+    .container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .photo-gallery {
+        gap: 15px;
+    }
+}
